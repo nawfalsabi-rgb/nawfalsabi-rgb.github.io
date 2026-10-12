@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+	<meta charset="UTF-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<title>Nawfal Sabi — Portfolio</title>
+	<link rel="preconnect" href="https://fonts.googleapis.com" />
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+	<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;1,400;1,600&family=IBM+Plex+Mono:wght@400;500&family=Inter:wght@300;400;500;700&display=swap" rel="stylesheet" />
+	<link rel="stylesheet" href="style.css" />
+</head>
+<body>
+	<div id="custom-cursor" class="custom-cursor"></div>
+
+	<section id="accueil" class="hero-row">
+		<div class="hero-greeting-row">
+			<p class="hero-greeting">Hi, I'm Nawfal Sabi</p>
+
+			<button id="theme-toggle" class="theme-toggle" aria-label="Basculer le thème">
+				<svg class="theme-icon theme-icon-sun" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
+					<path d="M 4.995 10 C 4.995 12.761 7.241 15.007 10.002 15.007 C 12.763 15.007 15.009 12.761 15.009 10 C 15.009 7.239 12.763 4.993 10.002 4.993 C 7.241 4.993 4.995 7.239 4.995 10 Z M 9 17 L 11 17 L 11 20 L 9 20 Z M 9 0 L 11 0 L 11 3 L 9 3 Z M 0 9 L 3 9 L 3 11 L 0 11 Z M 17 9 L 20 9 L 20 11 L 17 11 Z M 3.637 17.778 L 2.223 16.364 L 4.344 14.243 L 5.758 15.657 Z M 14.242 4.344 L 16.364 2.222 L 17.778 3.636 L 15.656 5.758 Z M 4.344 5.759 L 2.223 3.637 L 3.638 2.223 L 5.758 4.345 Z M 17.778 16.364 L 16.364 17.778 L 14.242 15.656 L 15.656 14.242 Z"/>
+				</svg>
+				<svg class="theme-icon theme-icon-moon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
+					<path d="M 8.006 16 C 3.585 16 0 12.415 0 7.994 C 0 3.725 3.34 0.237 7.549 0 C 6.197 1.101 5.334 2.779 5.334 4.658 C 5.334 7.975 8.022 10.663 11.339 10.663 C 13.22 10.663 14.899 9.798 16 8.444 C 15.766 12.656 12.277 16 8.006 16 Z" transform="translate(2 2)"/>
+				</svg>
+			</button>
+		</div>
+
+		<div class="hero-bio-block">
+			<div class="hero-bio-text">
+				<p>Designer multidisciplinaire basé à Rabat. Je construis des identités visuelles, des interfaces et des expériences qui tiennent aussi bien sur écran que dans l'espace physique.</p>
+				<p>Direction artistique, l'UI/UX et Product design.</p>
+			</div>
+
+			<div class="hero-links">
+				<p><a href="mailto:Nawfal@nawfal.com">Nawfal@nawfal.com</a></p>
+				<p><a href="#">Instagram</a></p>
+				<p><a href="#">Linkedin</a></p>
+				<p><a href="#">Whatsapp</a></p>
+			</div>
+		</div>
+
+		<div class="hero-portrait">
+			<img src="assets/nawfal-portrait.png" alt="Nawfal Sabi" />
+		</div>
+	</section>
+
+	<section id="featured">
+		<div class="featured-header">
+			<span>Selected Work</span>
+			<span>Updated 08.09.2026</span>
+			<span class="align-right">© Nawfal Sabi, 2026</span>
+		</div>
+		<div class="featured-rule"></div>
+
+		<div class="featured-grid" id="featured-grid"></div>
+	</section>
+
+	<section id="archive">
+		<p class="section-label">02 — Archive</p>
+
+		<div class="archive-filters" id="archive-filters"></div>
+
+		<div class="archive-table-wrap">
+			<table>
+				<thead>
+					<tr>
+						<th>ID</th>
+						<th>Titre</th>
+						<th>Focus</th>
+						<th>Année</th>
+					</tr>
+				</thead>
+				<tbody id="archive-tbody"></tbody>
+			</table>
+		</div>
+
+		<div class="archive-preview" id="archive-preview">
+			<img src="" alt="" />
+		</div>
+	</section>
+
+	<section id="about">
+		<p class="section-label">03 — About</p>
+
+		<div class="about-grid">
+			<div>
+				<h2>Design à la croisée du sens et de la forme.</h2>
+				<p class="about-bio">
+					Nawfal Sabi est un designer multidisciplinaire basé à Rabat. Formé entre les Beaux-Arts et le design numérique,
+					il construit des identités visuelles, des interfaces et des expériences qui tiennent aussi bien sur écran que dans
+					l'espace physique. Son travail traverse le branding, l'UI/UX, la direction artistique et la création 3D —
+					avec une attention constante à la cohérence et à la justesse.
+				</p>
+			</div>
+
+			<div>
+				<div class="about-skills">
+					<p class="mono-label">Focus</p>
+					<div class="skills-grid" id="skills-grid"></div>
+				</div>
+
+				<div>
+					<p class="mono-label">Contact</p>
+					<button id="copy-email-btn" class="copy-email-btn">
+						<span id="copy-email-text">nawfal@nawfalsabi.com</span>
+						<span id="copy-email-hint" class="mono-hint">↗ copier</span>
+					</button>
+				</div>
+			</div>
+		</div>
+	</section>
+
+	<footer>
+		<div>
+			<span class="footer-name">Nawfal Sabi</span>
+			<a href="mailto:nawfal@nawfalsabi.com" class="footer-email">nawfal@nawfalsabi.com</a>
+		</div>
+
+		<div class="footer-links">
+			<a href="#">Instagram</a>
+			<a href="#">LinkedIn</a>
+			<span>Rabat, MA</span>
+			<span class="dot">·</span>
+			<span>© 2026</span>
+		</div>
+	</footer>
+
+	<script src="data.js"></script>
+	<script src="script.js"></script>
+</body>
+</html>

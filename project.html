@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+	<meta charset="UTF-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<title>Projet — Nawfal Sabi</title>
+	<link rel="preconnect" href="https://fonts.googleapis.com" />
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+	<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;1,400;1,600&family=IBM+Plex+Mono:wght@400;500&family=Inter:wght@300;400;500;700&display=swap" rel="stylesheet" />
+	<link rel="stylesheet" href="style.css" />
+</head>
+<body class="project-page">
+	<div id="custom-cursor" class="custom-cursor"></div>
+
+	<div class="project-topbar">
+		<a href="index.html#featured" class="project-topbar-link">Close <span class="project-key-hint">[Esc]</span></a>
+		<div class="project-topbar-nav">
+			<span class="project-key-hint">[←]</span>
+			<a href="#" id="project-prev" class="project-topbar-link">Prev</a>
+			<span class="project-key-hint">[→]</span>
+			<a href="#" id="project-next" class="project-topbar-link">Next</a>
+		</div>
+	</div>
+
+	<div class="project-detail-card">
+		<div class="project-header">
+			<div>
+				<p class="project-title" id="project-title"></p>
+				<p class="project-subtitle" id="project-subtitle"></p>
+			</div>
+
+			<div>
+				<div class="project-description" id="project-description"></div>
+				<div class="project-meta" id="project-meta"></div>
+			</div>
+		</div>
+
+		<div class="project-media-grid" id="project-media-grid"></div>
+	</div>
+
+	<div class="project-footer">
+		<p>Have an idea in mind? Drop me a line!</p>
+		<a href="mailto:nawfal@nawfalsabi.com">nawfal@nawfalsabi.com</a>
+	</div>
+
+	<script src="data.js"></script>
+	<script src="project.js"></script>
+</body>
+</html>
