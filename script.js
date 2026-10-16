@@ -21,15 +21,24 @@ document.querySelectorAll(".featured-header, .section-label").forEach((el) => fa
 // ───────────────── Thème clair / sombre ─────────────────
 const themeToggle = document.getElementById("theme-toggle");
 const savedTheme = localStorage.getItem("theme");
+const favicon = document.getElementById("favicon");
+
+function updateFavicon() {
+	if (!favicon) return;
+	const isDark = document.documentElement.classList.contains("dark-theme");
+	favicon.href = isDark ? "favicon-dark.svg" : "favicon-light.svg";
+}
 
 if (savedTheme === "dark") {
 	document.documentElement.classList.add("dark-theme");
 }
+updateFavicon();
 
 themeToggle.addEventListener("click", () => {
 	document.documentElement.classList.toggle("dark-theme");
 	const isDark = document.documentElement.classList.contains("dark-theme");
 	localStorage.setItem("theme", isDark ? "dark" : "light");
+	updateFavicon();
 });
 
 // ───────────────── Curseur personnalisé ─────────────────
@@ -110,17 +119,6 @@ PROJECTS.forEach((project) => {
 	img.style.aspectRatio = `${cover.imgWidth} / ${cover.imgHeight}`;
 	img.loading = "lazy";
 	media.appendChild(img);
-
-	if (cover.overlay) {
-		const overlay = document.createElement("div");
-		overlay.className = "project-card-overlay";
-		[project.title.toLowerCase(), project.focus.toLowerCase(), project.year].forEach((t) => {
-			const span = document.createElement("span");
-			span.textContent = t;
-			overlay.appendChild(span);
-		});
-		media.appendChild(overlay);
-	}
 
 	const caption = document.createElement("div");
 	caption.className = "project-card-caption";
@@ -235,7 +233,7 @@ skills.forEach((skill) => {
 	skillsGrid.appendChild(span);
 });
 
-const EMAIL = "nawfal@nawfalsabi.com";
+const EMAIL = "contact@nawfalsabi.me";
 const copyBtn = document.getElementById("copy-email-btn");
 const copyText = document.getElementById("copy-email-text");
 const copyHint = document.getElementById("copy-email-hint");
