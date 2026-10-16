@@ -5,8 +5,9 @@
 	--accent: #6B4EE6;
 	--rule: #E8E8E4;
 	--nav-bg: rgba(250, 250, 248, 0.75);
-	--hero-bg: rgb(250, 250, 250);
+	--hero-bg: var(--bg);
 	--card-bg: #1A1A18;
+	--caption-muted: rgba(18, 18, 18, 0.5);
 	--transition-theme: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
 }
 
@@ -16,8 +17,8 @@ html.dark-theme {
 	--meta: #9A9A95;
 	--rule: #2A2A28;
 	--nav-bg: rgba(18, 18, 18, 0.75);
-	--hero-bg: #171717;
 	--card-bg: #050505;
+	--caption-muted: rgba(242, 242, 240, 0.5);
 }
 
 * {
@@ -272,8 +273,10 @@ html.dark-theme .theme-icon-moon {
 
 .project-card {
 	cursor: default;
+	color: inherit;
 	opacity: 1;
 	filter: grayscale(0);
+	text-decoration: none;
 	transition: opacity 0.4s ease, filter 0.4s ease;
 }
 
@@ -321,19 +324,20 @@ html.dark-theme .theme-icon-moon {
 }
 
 .project-card-caption .title {
-	font-family: 'Inter', sans-serif;
+	font-family: 'Manrope', sans-serif;
 	font-size: 14px;
 	font-weight: 400;
+	line-height: 20px;
 	color: var(--fg);
-	margin: 0 0 3px;
-	letter-spacing: -0.01em;
+	margin: 0;
 }
 
 .project-card-caption .subtitle {
-	font-family: 'Inter', sans-serif;
-	font-size: 13px;
-	font-weight: 300;
-	color: var(--meta);
+	font-family: 'Manrope', sans-serif;
+	font-size: 14px;
+	font-weight: 400;
+	line-height: 20px;
+	color: var(--caption-muted);
 	margin: 0;
 }
 
