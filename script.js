@@ -56,11 +56,13 @@ if (!isCoarsePointer) {
 	let cursorY = 0;
 	let hoverScale = REST_SCALE;
 	let currentScale = REST_SCALE;
+	let animationFrame = null;
 
-	window.addEventListener("mousemove", (event) => {
+	window.addEventListener("pointermove", (event) => {
 		mouseX = event.clientX;
 		mouseY = event.clientY;
 		cursor.classList.add("visible");
+		if (animationFrame === null) animationFrame = requestAnimationFrame(animateCursor);
 	});
 
 	document.addEventListener("mouseleave", () => cursor.classList.remove("visible"));
@@ -70,10 +72,9 @@ if (!isCoarsePointer) {
 		cursorY += (mouseY - cursorY) * 0.2;
 		currentScale += (hoverScale - currentScale) * 0.2;
 		cursor.style.transform = `translate(${cursorX}px, ${cursorY}px) translate(-50%, -50%) scale(${currentScale})`;
-		requestAnimationFrame(animateCursor);
+		const isMoving = Math.abs(mouseX - cursorX) > 0.1 || Math.abs(mouseY - cursorY) > 0.1 || Math.abs(hoverScale - currentScale) > 0.001;
+		animationFrame = isMoving ? requestAnimationFrame(animateCursor) : null;
 	}
-
-	requestAnimationFrame(animateCursor);
 
 	function isHoverTarget(el) {
 		if (!el) return false;
@@ -118,6 +119,7 @@ PROJECTS.forEach((project) => {
 	img.height = cover.imgHeight;
 	img.style.aspectRatio = `${cover.imgWidth} / ${cover.imgHeight}`;
 	img.loading = "lazy";
+	img.decoding = "async";
 	media.appendChild(img);
 
 	const caption = document.createElement("div");
@@ -140,79 +142,6 @@ PROJECTS.forEach((project) => {
 	img.addEventListener("load", updateSpan);
 	new ResizeObserver(updateSpan).observe(link);
 });
-
-// ───────────────── Archive — filtres + tableau + preview ─────────────────
-const filters = ["Tous", "Brand", "UI", "3D", "Identity", "Motion"];
-
-const filtersEl = document.getElementById("archive-filters");
-const tbody = document.getElementById("archive-tbody");
-const preview = document.getElementById("archive-preview");
-const previewImg = preview.querySelector("img");
-
-let activeFilter = "Tous";
-
-function renderFilters() {
-	filtersEl.innerHTML = "";
-	filters.forEach((f, i) => {
-		const btn = document.createElement("button");
-		btn.textContent = f;
-		if (f === activeFilter) btn.classList.add("active");
-		if (i < filters.length - 1) {
-			const sep = document.createElement("span");
-			sep.className = "sep";
-			sep.textContent = "/";
-			btn.appendChild(sep);
-		}
-		btn.addEventListener("click", () => {
-			activeFilter = f;
-			renderFilters();
-			renderTable();
-		});
-		filtersEl.appendChild(btn);
-	});
-}
-
-function renderTable() {
-	const filtered = activeFilter === "Tous" ? ARCHIVE_PROJECTS : ARCHIVE_PROJECTS.filter((p) => p.focusKey === activeFilter);
-
-	tbody.innerHTML = "";
-	filtered.forEach((project) => {
-		const tr = document.createElement("tr");
-		tr.innerHTML = `
-			<td class="id-cell">${project.id}</td>
-			<td class="title-cell">${project.title}</td>
-			<td class="focus-cell">${project.focus}</td>
-			<td class="year-cell">${project.year}</td>
-		`;
-
-		tr.addEventListener("mouseenter", () => {
-			tbody.querySelectorAll("tr").forEach((row) => {
-				if (row !== tr) row.classList.add("dimmed");
-			});
-			previewImg.src = project.poster;
-			preview.classList.add("visible");
-		});
-
-		tr.addEventListener("mouseleave", () => {
-			tbody.querySelectorAll("tr").forEach((row) => row.classList.remove("dimmed"));
-			preview.classList.remove("visible");
-		});
-
-		tr.addEventListener("click", () => {
-			window.location.href = `project.html?slug=${project.slug}`;
-		});
-
-		tbody.appendChild(tr);
-	});
-}
-
-document.getElementById("archive").addEventListener("mousemove", (event) => {
-	preview.style.left = `${event.clientX + 24}px`;
-	preview.style.top = `${event.clientY - 80}px`;
-});
-
-renderFilters();
-renderTable();
 
 // ───────────────── About — skills + copie email ─────────────────
 const skills = [

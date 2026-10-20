@@ -38,7 +38,7 @@ metaRows.forEach(([label, value]) => {
 });
 
 const mediaGrid = document.getElementById("project-media-grid");
-project.images.forEach((image) => {
+project.images.forEach((image, index) => {
 	const figure = document.createElement("div");
 	figure.className = "project-media";
 
@@ -53,7 +53,9 @@ project.images.forEach((image) => {
 	} else {
 		media.src = image.src;
 		media.alt = project.title;
-		media.loading = "lazy";
+		media.loading = index === 0 ? "eager" : "lazy";
+		media.decoding = "async";
+		if (index === 0) media.fetchPriority = "high";
 	}
 	media.width = image.imgWidth;
 	media.height = image.imgHeight;
@@ -105,11 +107,13 @@ if (!isCoarsePointer) {
 	let cursorY = 0;
 	let hoverScale = REST_SCALE;
 	let currentScale = REST_SCALE;
+	let animationFrame = null;
 
-	window.addEventListener("mousemove", (event) => {
+	window.addEventListener("pointermove", (event) => {
 		mouseX = event.clientX;
 		mouseY = event.clientY;
 		cursor.classList.add("visible");
+		if (animationFrame === null) animationFrame = requestAnimationFrame(animateCursor);
 	});
 
 	document.addEventListener("mouseleave", () => cursor.classList.remove("visible"));
@@ -119,10 +123,9 @@ if (!isCoarsePointer) {
 		cursorY += (mouseY - cursorY) * 0.2;
 		currentScale += (hoverScale - currentScale) * 0.2;
 		cursor.style.transform = `translate(${cursorX}px, ${cursorY}px) translate(-50%, -50%) scale(${currentScale})`;
-		requestAnimationFrame(animateCursor);
+		const isMoving = Math.abs(mouseX - cursorX) > 0.1 || Math.abs(mouseY - cursorY) > 0.1 || Math.abs(hoverScale - currentScale) > 0.001;
+		animationFrame = isMoving ? requestAnimationFrame(animateCursor) : null;
 	}
-
-	requestAnimationFrame(animateCursor);
 
 	const hoverTargets = "a, button, .project-media";
 
