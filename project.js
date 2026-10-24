@@ -10,6 +10,11 @@ const nextProject = PROJECTS[(currentIndex + 1) % PROJECTS.length];
 
 document.title = `${project.title} — Nawfal Sabi`;
 
+const canonical = document.createElement("link");
+canonical.rel = "canonical";
+canonical.href = `https://nawfalsabi.me/project.html?slug=${project.slug}`;
+document.head.appendChild(canonical);
+
 document.getElementById("project-prev").href = `project.html?slug=${prevProject.slug}`;
 document.getElementById("project-next").href = `project.html?slug=${nextProject.slug}`;
 
