@@ -31,11 +31,10 @@ project.description.forEach((paragraph) => {
 const metaEl = document.getElementById("project-meta");
 const metaRows = [
 	["Client", project.client],
-	["Agence", project.agency],
 	["Collaborateurs", project.collaborators],
 	["Rôle", project.role],
 	["Année", project.year],
-];
+].filter(([, value]) => value && value !== "—");
 metaRows.forEach(([label, value]) => {
 	const p = document.createElement("p");
 	p.innerHTML = `${label} : <span>${value}</span>`;
@@ -97,52 +96,61 @@ document.addEventListener("keydown", (event) => {
 	}
 });
 
-// ───────────────── Curseur personnalisé ─────────────────
+// ───────────────── Curseur personnalisé (GPU + Framer-style smoothing) ─────────────────
 const isCoarsePointer = window.matchMedia("(pointer: coarse)").matches;
 
 if (!isCoarsePointer) {
 	document.body.classList.add("custom-cursor-active");
 
 	const cursor = document.getElementById("custom-cursor");
-	const REST_SCALE = 1 / 3;
-	const HOVER_SCALE = 1;
+	const CURSOR_HALF = 15;
+	const SMOOTH_SPEED = 22;
+	const hoverTargets = "a, button, .project-media";
 	let mouseX = 0;
 	let mouseY = 0;
 	let cursorX = 0;
 	let cursorY = 0;
-	let hoverScale = REST_SCALE;
-	let currentScale = REST_SCALE;
+	let hasInitialized = false;
+	let lastTime = 0;
 	let animationFrame = null;
 
-	window.addEventListener("pointermove", (event) => {
-		mouseX = event.clientX;
-		mouseY = event.clientY;
-		cursor.classList.add("visible");
-		if (animationFrame === null) animationFrame = requestAnimationFrame(animateCursor);
-	});
+	window.addEventListener(
+		"pointermove",
+		(event) => {
+			mouseX = event.clientX;
+			mouseY = event.clientY;
+
+			if (!hasInitialized) {
+				cursorX = mouseX;
+				cursorY = mouseY;
+				hasInitialized = true;
+				cursor.style.transform = `translate3d(${cursorX - CURSOR_HALF}px, ${cursorY - CURSOR_HALF}px, 0)`;
+			}
+
+			cursor.classList.add("visible");
+			cursor.classList.toggle("is-hover", !!event.target?.closest(hoverTargets));
+
+			if (animationFrame === null) {
+				lastTime = performance.now();
+				animationFrame = requestAnimationFrame(animateCursor);
+			}
+		},
+		{ passive: true }
+	);
 
 	document.addEventListener("mouseleave", () => cursor.classList.remove("visible"));
 
-	function animateCursor() {
-		cursorX += (mouseX - cursorX) * 0.2;
-		cursorY += (mouseY - cursorY) * 0.2;
-		currentScale += (hoverScale - currentScale) * 0.2;
-		cursor.style.transform = `translate(${cursorX}px, ${cursorY}px) translate(-50%, -50%) scale(${currentScale})`;
-		const isMoving = Math.abs(mouseX - cursorX) > 0.1 || Math.abs(mouseY - cursorY) > 0.1 || Math.abs(hoverScale - currentScale) > 0.001;
+	function animateCursor(now) {
+		const dt = Math.min(0.05, Math.max(0.001, (now - lastTime) / 1000));
+		lastTime = now;
+
+		const alpha = 1 - Math.exp(-SMOOTH_SPEED * dt);
+		cursorX += (mouseX - cursorX) * alpha;
+		cursorY += (mouseY - cursorY) * alpha;
+
+		cursor.style.transform = `translate3d(${cursorX - CURSOR_HALF}px, ${cursorY - CURSOR_HALF}px, 0)`;
+
+		const isMoving = Math.abs(mouseX - cursorX) > 0.05 || Math.abs(mouseY - cursorY) > 0.05;
 		animationFrame = isMoving ? requestAnimationFrame(animateCursor) : null;
 	}
-
-	const hoverTargets = "a, button, .project-media";
-
-	document.addEventListener("mouseover", (event) => {
-		if (event.target.closest(hoverTargets)) {
-			hoverScale = HOVER_SCALE;
-		}
-	});
-
-	document.addEventListener("mouseout", (event) => {
-		if (event.target.closest(hoverTargets) && !event.relatedTarget?.closest(hoverTargets)) {
-			hoverScale = REST_SCALE;
-		}
-	});
 }
