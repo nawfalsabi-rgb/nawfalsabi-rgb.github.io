@@ -26,7 +26,8 @@ html.dark-theme {
 }
 
 html {
-	scroll-behavior: smooth;
+	scroll-behavior: auto;
+	overscroll-behavior-y: none;
 }
 
 ::selection {
@@ -86,14 +87,29 @@ body.custom-cursor-active * {
 	left: 0;
 	width: 30px;
 	height: 30px;
-	border-radius: 50%;
-	background: #fff;
 	pointer-events: none;
-	z-index: 999;
+	z-index: 9999;
 	opacity: 0;
 	mix-blend-mode: difference;
 	will-change: transform;
+	backface-visibility: hidden;
 	transition: opacity 0.2s ease;
+}
+
+.custom-cursor::after {
+	content: "";
+	display: block;
+	width: 100%;
+	height: 100%;
+	border-radius: 50%;
+	background: #fff;
+	transform: scale(0.3333);
+	will-change: transform;
+	transition: transform 0.38s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.custom-cursor.is-hover::after {
+	transform: scale(1);
 }
 
 .custom-cursor.visible {
@@ -229,11 +245,12 @@ html.dark-theme .theme-icon-moon {
 }
 
 /* ───────────────── Featured / Selected Work ───────────────── */
-#featured {
+#featured,
+.featured-section {
 	display: flex;
 	flex-direction: column;
 	width: 100%;
-	padding: 0 14px;
+	padding: 0 14px 48px;
 	box-sizing: border-box;
 	overflow: clip;
 }
@@ -843,6 +860,10 @@ body.project-page {
 	font-style: italic;
 	font-size: clamp(16px, 1.6vw, 20px);
 	min-height: 260px;
+}
+
+.project-quote:nth-child(odd):last-child {
+	grid-column: 1 / -1;
 }
 
 .project-footer {
