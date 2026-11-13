@@ -24,10 +24,13 @@ const nextProject = PROJECTS[(currentIndex + 1) % PROJECTS.length];
 
 document.title = `${project.title} — Nawfal Sabi`;
 
-const canonical = document.createElement("link");
-canonical.rel = "canonical";
+let canonical = document.querySelector('link[rel="canonical"]');
+if (!canonical) {
+	canonical = document.createElement("link");
+	canonical.rel = "canonical";
+	document.head.appendChild(canonical);
+}
 canonical.href = `https://nawfalsabi.me/${project.slug}`;
-document.head.appendChild(canonical);
 
 const closeLink = document.getElementById("project-close");
 if (closeLink) closeLink.href = homeHref;
