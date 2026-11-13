@@ -1,3 +1,9 @@
+// ───────────────── Nettoyage de l'URL (retire /index.html et #featured) ─────────────────
+const isLocalFile = window.location.protocol === "file:";
+if (!isLocalFile && (window.location.pathname.endsWith("/index.html") || window.location.hash)) {
+	window.history.replaceState(null, "", "/");
+}
+
 // ───────────────── Selected Work — grille masonry ─────────────────
 const ROW_GAP = 14;
 
@@ -7,7 +13,7 @@ function populateGrid(gridEl, isClone = false) {
 
 		const link = document.createElement("a");
 		link.className = "project-card";
-		link.href = `project.html?slug=${project.slug}`;
+		link.href = isLocalFile ? `${project.slug}.html` : `/${project.slug}`;
 		if (isClone) {
 			link.tabIndex = -1;
 		}

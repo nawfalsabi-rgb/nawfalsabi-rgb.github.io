@@ -1,9 +1,23 @@
-// ───────────────── Résolution du projet via l'URL ─────────────────
+// ───────────────── Résolution du projet via l'URL propre (/sora) ou ?slug= ─────────────────
+const isLocalFile = window.location.protocol === "file:";
+const getProjectHref = (slug) => (isLocalFile ? `${slug}.html` : `/${slug}`);
+const homeHref = isLocalFile ? "index.html" : "/";
+
 const params = new URLSearchParams(window.location.search);
-const slug = params.get("slug");
+const pathSegment = window.location.pathname
+	.replace(/\/+$/, "")
+	.split("/")
+	.pop()
+	.replace(/\.html$/i, "");
+const slug = params.get("slug") || pathSegment;
+
 const index = PROJECTS.findIndex((p) => p.slug === slug);
 const project = index === -1 ? PROJECTS[0] : PROJECTS[index];
 const currentIndex = index === -1 ? 0 : index;
+
+if (!isLocalFile && (window.location.pathname !== `/${project.slug}` || window.location.search)) {
+	window.history.replaceState(null, "", `/${project.slug}`);
+}
 
 const prevProject = PROJECTS[(currentIndex - 1 + PROJECTS.length) % PROJECTS.length];
 const nextProject = PROJECTS[(currentIndex + 1) % PROJECTS.length];
@@ -12,11 +26,13 @@ document.title = `${project.title} — Nawfal Sabi`;
 
 const canonical = document.createElement("link");
 canonical.rel = "canonical";
-canonical.href = `https://nawfalsabi.me/project.html?slug=${project.slug}`;
+canonical.href = `https://nawfalsabi.me/${project.slug}`;
 document.head.appendChild(canonical);
 
-document.getElementById("project-prev").href = `project.html?slug=${prevProject.slug}`;
-document.getElementById("project-next").href = `project.html?slug=${nextProject.slug}`;
+const closeLink = document.getElementById("project-close");
+if (closeLink) closeLink.href = homeHref;
+document.getElementById("project-prev").href = getProjectHref(prevProject.slug);
+document.getElementById("project-next").href = getProjectHref(nextProject.slug);
 
 document.getElementById("project-title").textContent = project.title;
 document.getElementById("project-subtitle").textContent = project.subtitle;
@@ -88,11 +104,11 @@ mediaGrid.appendChild(quoteBox);
 // ───────────────── Navigation clavier ─────────────────
 document.addEventListener("keydown", (event) => {
 	if (event.key === "Escape") {
-		window.location.href = "index.html#featured";
+		window.location.href = homeHref;
 	} else if (event.key === "ArrowLeft") {
-		window.location.href = `project.html?slug=${prevProject.slug}`;
+		window.location.href = getProjectHref(prevProject.slug);
 	} else if (event.key === "ArrowRight") {
-		window.location.href = `project.html?slug=${nextProject.slug}`;
+		window.location.href = getProjectHref(nextProject.slug);
 	}
 });
 
