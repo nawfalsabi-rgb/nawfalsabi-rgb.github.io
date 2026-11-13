@@ -228,8 +228,9 @@ html.dark-theme .theme-icon-moon {
 }
 
 .hero-portrait {
-	width: 136px;
-	height: 154px;
+	width: 175px;
+	aspect-ratio: 0.96;
+	height: auto;
 	flex-shrink: 0;
 	position: relative;
 	overflow: hidden;
@@ -242,6 +243,7 @@ html.dark-theme .theme-icon-moon {
 	width: 100%;
 	height: 100%;
 	object-fit: cover;
+	object-position: center 24%;
 }
 
 /* ───────────────── Featured / Selected Work ───────────────── */
