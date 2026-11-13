@@ -60,6 +60,13 @@ metaRows.forEach(([label, value]) => {
 	metaEl.appendChild(p);
 });
 
+if (project.liveUrl) {
+	const p = document.createElement("p");
+	const label = project.liveLabel || project.liveUrl.replace(/^https?:\/\/(www\.)?/, "").replace(/\/$/, "") + " ↗";
+	p.innerHTML = `Site live : <a href="${project.liveUrl}" target="_blank" rel="noopener noreferrer">${label}</a>`;
+	metaEl.appendChild(p);
+}
+
 const mediaGrid = document.getElementById("project-media-grid");
 project.images.forEach((image, index) => {
 	const figure = document.createElement("div");

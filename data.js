@@ -33,6 +33,8 @@ const PROJECTS = [
 		year: "2026",
 		client: "Sora",
 		role: "Webdesign, UI/UX Design & Développement Front-end",
+		liveUrl: "https://sora-pilates.fr/",
+		liveLabel: "sora-pilates.fr ↗",
 		description: [
 			"Sora (sora-pilates.fr) est un studio parisien de Reformer Pilates et de drainage lymphatique pensé comme une expérience globale de transformation du corps. L'architecture du site s'articule autour de deux piliers — Move et Recover — portés par une direction artistique éditoriale bordeaux, taupe et crème.",
 			"Le projet couvre l'ensemble de la chaîne : stratégie UX/UI, création du design system (programmes Sculpt/Burn/Flow/Mat, rituels Recovery, cartes cadeaux, parcours de réservation en ligne) et développement front-end sur-mesure.",

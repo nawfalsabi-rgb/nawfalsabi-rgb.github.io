@@ -808,7 +808,8 @@ body.project-page {
 	margin: 0 0 6px;
 }
 
-.project-meta span {
+.project-meta span,
+.project-meta a {
 	color: var(--fg);
 	text-decoration: underline;
 }
