@@ -73,6 +73,10 @@ populateGrid(cloneGrid, true);
 
 infiniteContainer.appendChild(cloneCycle);
 
+document.querySelectorAll(".notes-link").forEach((a) => {
+	a.href = isLocalFile ? "notes.html" : "/notes";
+});
+
 // ───────────────── Thème clair / sombre (synchronisé sur l'original + le clone) ─────────────────
 const savedTheme = localStorage.getItem("theme");
 const favicon = document.getElementById("favicon");

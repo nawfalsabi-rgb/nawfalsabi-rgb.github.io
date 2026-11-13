@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+	<meta charset="UTF-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<title>Notes — Nawfal Sabi</title>
+	<link rel="canonical" href="https://nawfalsabi.me/notes" />
+	<meta name="description" content="Notes et réflexions de Nawfal Sabi — Coming soon." />
+	<link rel="icon" type="image/svg+xml" href="favicon-dark.svg" />
+	<link rel="preconnect" href="https://fonts.googleapis.com" />
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+	<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;1,400;1,600&family=IBM+Plex+Mono:wght@400;500&family=Inter:wght@300;400;500;700&display=swap" rel="stylesheet" />
+	<link rel="stylesheet" href="style.css" />
+</head>
+<body class="project-page">
+	<div id="custom-cursor" class="custom-cursor"></div>
+
+	<div class="project-topbar">
+		<a href="/" id="notes-close" class="project-topbar-link">Close <span class="project-key-hint">[Esc]</span></a>
+	</div>
+
+	<div class="project-detail-card">
+		<div class="project-quote" style="min-height: 420px; background-color: #fafafa; color: #141414;">
+			Coming soon.
+		</div>
+	</div>
+
+	<div class="project-footer">
+		<p>Have an idea in mind? Drop me a line!</p>
+		<a href="mailto:contact@nawfalsabi.me">contact@nawfalsabi.me</a>
+	</div>
+
+	<script>
+		const isLocalFile = window.location.protocol === "file:";
+		const homeHref = isLocalFile ? "index.html" : "/";
+		document.getElementById("notes-close").href = homeHref;
+
+		if (!isLocalFile && window.location.pathname !== "/notes") {
+			window.history.replaceState(null, "", "/notes");
+		}
+
+		document.addEventListener("keydown", (event) => {
+			if (event.key === "Escape") {
+				window.location.href = homeHref;
+			}
+		});
+
+		const isCoarsePointer = window.matchMedia("(pointer: coarse)").matches;
+		if (!isCoarsePointer) {
+			document.body.classList.add("custom-cursor-active");
+			const cursor = document.getElementById("custom-cursor");
+			const CURSOR_HALF = 15;
+			const SMOOTH_SPEED = 22;
+			const hoverTargets = "a, button";
+			let mouseX = 0, mouseY = 0, cursorX = 0, cursorY = 0;
+			let hasInitialized = false, lastTime = 0, animationFrame = null;
+
+			window.addEventListener("pointermove", (event) => {
+				mouseX = event.clientX;
+				mouseY = event.clientY;
+				if (!hasInitialized) {
+					cursorX = mouseX;
+					cursorY = mouseY;
+					hasInitialized = true;
+					cursor.style.transform = `translate3d(${cursorX - CURSOR_HALF}px, ${cursorY - CURSOR_HALF}px, 0)`;
+				}
+				cursor.classList.add("visible");
+				cursor.classList.toggle("is-hover", !!event.target?.closest(hoverTargets));
+				if (animationFrame === null) {
+					lastTime = performance.now();
+					animationFrame = requestAnimationFrame(animateCursor);
+				}
+			}, { passive: true });
+
+			document.addEventListener("mouseleave", () => cursor.classList.remove("visible"));
+
+			function animateCursor(now) {
+				const dt = Math.min(0.05, Math.max(0.001, (now - lastTime) / 1000));
+				lastTime = now;
+				const alpha = 1 - Math.exp(-SMOOTH_SPEED * dt);
+				cursorX += (mouseX - cursorX) * alpha;
+				cursorY += (mouseY - cursorY) * alpha;
+				cursor.style.transform = `translate3d(${cursorX - CURSOR_HALF}px, ${cursorY - CURSOR_HALF}px, 0)`;
+				const isMoving = Math.abs(mouseX - cursorX) > 0.05 || Math.abs(mouseY - cursorY) > 0.05;
+				animationFrame = isMoving ? requestAnimationFrame(animateCursor) : null;
+			}
+		}
+	</script>
+</body>
+</html>
