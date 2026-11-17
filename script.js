@@ -77,6 +77,24 @@ document.querySelectorAll(".notes-link").forEach((a) => {
 	a.href = isLocalFile ? "notes.html" : "/notes";
 });
 
+// ───────────────── Badge Available + Copie Email ─────────────────
+document.querySelectorAll(".availability-btn").forEach((btn) => {
+	const tooltip = btn.querySelector(".availability-tooltip");
+	let resetTimer = null;
+
+	btn.addEventListener("click", () => {
+		navigator.clipboard?.writeText("contact@nawfalsabi.me");
+		btn.classList.add("copied");
+		if (tooltip) tooltip.textContent = "Email copied!";
+
+		clearTimeout(resetTimer);
+		resetTimer = setTimeout(() => {
+			btn.classList.remove("copied");
+			if (tooltip) tooltip.textContent = "Copy email?";
+		}, 2000);
+	});
+});
+
 // ───────────────── Thème clair / sombre (synchronisé sur l'original + le clone) ─────────────────
 const savedTheme = localStorage.getItem("theme");
 const favicon = document.getElementById("favicon");

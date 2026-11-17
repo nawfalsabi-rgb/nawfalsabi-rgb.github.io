@@ -131,11 +131,107 @@ body.custom-cursor-active * {
 	transition: var(--transition-theme);
 }
 
+.hero-left-col {
+	display: flex;
+	flex-direction: column;
+	align-items: flex-start;
+	gap: 10px;
+	flex-shrink: 0;
+}
+
 .hero-greeting-row {
 	display: flex;
 	align-items: center;
 	gap: 10px;
 	flex-shrink: 0;
+}
+
+/* ───────────────── Availability Heartbeat Badge ───────────────── */
+@keyframes availabilityHeartbeat {
+	0%, 100% {
+		opacity: 1;
+		transform: scale(1);
+	}
+	15% {
+		opacity: 0.35;
+		transform: scale(0.85);
+	}
+	30% {
+		opacity: 1;
+		transform: scale(1.1);
+	}
+	45% {
+		opacity: 0.45;
+		transform: scale(0.9);
+	}
+	60% {
+		opacity: 1;
+		transform: scale(1);
+	}
+}
+
+.availability-btn {
+	position: relative;
+	display: inline-flex;
+	align-items: center;
+	gap: 8px;
+	padding: 0;
+	background: none;
+	border: none;
+	font-family: 'Inter', sans-serif;
+	font-weight: 500;
+	font-size: 13px;
+	color: var(--meta);
+	cursor: pointer;
+	transition: color 0.2s ease;
+}
+
+.availability-btn:hover {
+	color: var(--fg);
+}
+
+.availability-dot {
+	width: 7px;
+	height: 7px;
+	background-color: #FF4400;
+	border-radius: 1px;
+	flex-shrink: 0;
+	animation: availabilityHeartbeat 2.2s ease-in-out infinite;
+	will-change: transform, opacity;
+}
+
+.availability-btn:hover .availability-dot {
+	animation-duration: 0.55s;
+}
+
+.availability-tooltip {
+	position: absolute;
+	top: calc(100% + 10px);
+	left: 0;
+	padding: 5px 10px;
+	border-radius: 6px;
+	background-color: #1f1f1f;
+	color: #d4d4d2;
+	font-family: 'Inter', sans-serif;
+	font-weight: 500;
+	font-size: 12px;
+	white-space: nowrap;
+	pointer-events: none;
+	opacity: 0;
+	transform: translateY(-4px);
+	transition: opacity 0.2s ease, transform 0.2s ease;
+	box-shadow: 0 4px 14px rgba(0, 0, 0, 0.14);
+}
+
+html:not(.dark-theme) .availability-tooltip {
+	background-color: #141414;
+	color: #f4f4f2;
+}
+
+.availability-btn:hover .availability-tooltip,
+.availability-btn.copied .availability-tooltip {
+	opacity: 1;
+	transform: translateY(0);
 }
 
 .hero-greeting {
