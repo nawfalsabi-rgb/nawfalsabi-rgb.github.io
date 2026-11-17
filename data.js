@@ -11,7 +11,7 @@ const PROJECTS = [
 		role: "UI/UX Design & Design Strategy",
 		description: [
 			"Dealer2CBD est une plateforme hybride B2B/B2C repensée de A à Z : recherche utilisateur, personas, architecture de l'information, wireframes, puis design system complet et intégration front-end.",
-			"Le travail couvre l'ensemble du processus — benchmark concurrentiel, ideation, prototypage Figma, jusqu'à la modélisation 3D des packagings et leur intégration dans l'interface e-commerce.",
+			"Le travail couvre l'ensemble du processus : benchmark concurrentiel, ideation, prototypage Figma, jusqu'à la modélisation 3D des packagings et leur intégration dans l'interface e-commerce.",
 		],
 		quote: "Une stratégie de design pensée du research au pixel.",
 		cover: { src: "assets/projects/dealer2cbd/00-cover.jpg", imgWidth: 2048, imgHeight: 2048 },
@@ -36,7 +36,7 @@ const PROJECTS = [
 		liveUrl: "https://sora-pilates.fr/",
 		liveLabel: "sora-pilates.fr ↗",
 		description: [
-			"Sora (sora-pilates.fr) est un studio parisien de Reformer Pilates et de drainage lymphatique pensé comme une expérience globale de transformation du corps. L'architecture du site s'articule autour de deux piliers — Move et Recover — portés par une direction artistique éditoriale bordeaux, taupe et crème.",
+			"Sora (sora-pilates.fr) est un studio parisien de Reformer Pilates et de drainage lymphatique pensé comme une expérience globale de transformation du corps. L'architecture du site s'articule autour de deux piliers (Move et Recover) portés par une direction artistique éditoriale bordeaux, taupe et crème.",
 			"Le projet couvre l'ensemble de la chaîne : stratégie UX/UI, création du design system (programmes Sculpt/Burn/Flow/Mat, rituels Recovery, cartes cadeaux, parcours de réservation en ligne) et développement front-end sur-mesure.",
 		],
 		quote: "Le Pilates qui transforme. Vraiment.",
@@ -60,7 +60,7 @@ const PROJECTS = [
 		role: "Direction Artistique, Packaging & Modélisation 3D",
 		description: [
 			"Papillon Fragrance est une maison de parfumerie pour laquelle j'ai conçu l'univers de marque complet : monogramme papillon, système d'étiquettes découpées en arche et modélisation 3D photoréaliste de l'ensemble du flaconnage.",
-			"Le projet s'articule autour de deux gammes distinctes — une collection d'Eaux de Parfum aux lignes architecturales épurées, et une série pop de Sprays d'Ambiance aux flacons sculptés mis en scène dans des décors 3D texturés.",
+			"Le projet s'articule autour de deux gammes distinctes : une collection d'Eaux de Parfum aux lignes architecturales épurées, et une série pop de Sprays d'Ambiance aux flacons sculptés mis en scène dans des décors 3D texturés.",
 		],
 		quote: "L'élégance du parfum, traduite en volume et en lumière.",
 		cover: { src: "assets/projects/papillon/00-cover.jpg", imgWidth: 1031, imgHeight: 1289 },
@@ -99,7 +99,7 @@ const PROJECTS = [
 		id: 17,
 		slug: "backstages",
 		title: "Les Backstages",
-		subtitle: "Œuvre d'art numérique — Le Rêve",
+		subtitle: "Œuvre d'art numérique · Le Rêve",
 		focus: "Art Numérique · 3D",
 		year: "2024",
 		client: "Projet personnel",
@@ -154,7 +154,7 @@ const PROJECTS = [
 		role: "Product Design",
 		description: [
 			"Rouelibre est une application mobile de location de véhicules haut de gamme, pensée pour une expérience fluide de la connexion à la réservation.",
-			"Le design system s'appuie sur une identité verte franche et des parcours simplifiés — authentification, découverte des véhicules, gestion du compte.",
+			"Le design system s'appuie sur une identité verte franche et des parcours simplifiés : authentification, découverte des véhicules, gestion du compte.",
 		],
 		quote: "Louer l'excellence, en toute simplicité.",
 		images: [
@@ -213,13 +213,13 @@ const PROJECTS = [
 ];
 
 const ARCHIVE_PROJECTS = [
-	{ id: "NS_128", slug: "dealer2cbd", title: "Dealer2CBD — Design Système", focus: "UI · UX · Strategy", year: "2026", focusKey: "UI", poster: "assets/projects/dealer2cbd/00-cover.jpg" },
-	{ id: "NS_341", slug: "sora", title: "Sora — Webdesign & UI/UX", focus: "Webdesign · UI/UX · Front-end", year: "2026", focusKey: "UI", poster: "assets/projects/sora/00-cover.jpg" },
-	{ id: "NS_362", slug: "papillon", title: "Papillon Fragrance — Branding & 3D", focus: "Branding · Packaging · 3D", year: "2026", focusKey: "3D", poster: "assets/projects/papillon/00-cover.jpg" },
-	{ id: "NS_318", slug: "anzar", title: "Anzar — Identité de Marque", focus: "Brand · Identity", year: "2026", focusKey: "Identity", poster: "assets/projects/anzar/poster.jpg" },
-	{ id: "NS_204", slug: "backstages", title: "Les Backstages — Art Numérique", focus: "Art Numérique · 3D", year: "2024", focusKey: "3D", poster: "assets/projects/backstages/cover.jpg" },
-	{ id: "NS_325", slug: "kiran", title: "Kiran — Identité de Marque", focus: "Brand · Identity", year: "2026", focusKey: "Identity", poster: "assets/projects/kiran/poster.jpg" },
-	{ id: "NS_190", slug: "rouelibre", title: "Rouelibre — Application Mobile", focus: "UI · UX", year: "2025", focusKey: "UI", poster: "assets/projects/rouelibre/02.jpg" },
-	{ id: "NS_160", slug: "allcosmeto", title: "AllCosmeto — Identité de Marque", focus: "Brand · Identity", year: "2025", focusKey: "Identity", poster: "assets/projects/allcosmeto/01.jpg" },
-	{ id: "NS_356", slug: "cosmos", title: "Cosmos Agency — Direction Artistique", focus: "Brand · Direction Artistique", year: "2026", focusKey: "Brand", poster: "assets/projects/cosmos/01-billboard.jpg" },
+	{ id: "NS_128", slug: "dealer2cbd", title: "Dealer2CBD · Design Système", focus: "UI · UX · Strategy", year: "2026", focusKey: "UI", poster: "assets/projects/dealer2cbd/00-cover.jpg" },
+	{ id: "NS_341", slug: "sora", title: "Sora · Webdesign & UI/UX", focus: "Webdesign · UI/UX · Front-end", year: "2026", focusKey: "UI", poster: "assets/projects/sora/00-cover.jpg" },
+	{ id: "NS_362", slug: "papillon", title: "Papillon Fragrance · Branding & 3D", focus: "Branding · Packaging · 3D", year: "2026", focusKey: "3D", poster: "assets/projects/papillon/00-cover.jpg" },
+	{ id: "NS_318", slug: "anzar", title: "Anzar · Identité de Marque", focus: "Brand · Identity", year: "2026", focusKey: "Identity", poster: "assets/projects/anzar/poster.jpg" },
+	{ id: "NS_204", slug: "backstages", title: "Les Backstages · Art Numérique", focus: "Art Numérique · 3D", year: "2024", focusKey: "3D", poster: "assets/projects/backstages/cover.jpg" },
+	{ id: "NS_325", slug: "kiran", title: "Kiran · Identité de Marque", focus: "Brand · Identity", year: "2026", focusKey: "Identity", poster: "assets/projects/kiran/poster.jpg" },
+	{ id: "NS_190", slug: "rouelibre", title: "Rouelibre · Application Mobile", focus: "UI · UX", year: "2025", focusKey: "UI", poster: "assets/projects/rouelibre/02.jpg" },
+	{ id: "NS_160", slug: "allcosmeto", title: "AllCosmeto · Identité de Marque", focus: "Brand · Identity", year: "2025", focusKey: "Identity", poster: "assets/projects/allcosmeto/01.jpg" },
+	{ id: "NS_356", slug: "cosmos", title: "Cosmos Agency · Direction Artistique", focus: "Brand · Direction Artistique", year: "2026", focusKey: "Brand", poster: "assets/projects/cosmos/01-billboard.jpg" },
 ];
