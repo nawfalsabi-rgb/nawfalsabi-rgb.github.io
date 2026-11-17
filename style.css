@@ -131,7 +131,7 @@ body.custom-cursor-active * {
 	transition: var(--transition-theme);
 }
 
-.hero-left-col {
+.hero-right-col {
 	display: flex;
 	flex-direction: column;
 	align-items: flex-start;
@@ -146,27 +146,13 @@ body.custom-cursor-active * {
 	flex-shrink: 0;
 }
 
-/* ───────────────── Availability Heartbeat Badge ───────────────── */
-@keyframes availabilityHeartbeat {
-	0%, 100% {
+/* ───────────────── Availability Blink Badge (Corentin Bernadou style) ───────────────── */
+@keyframes availabilityBlink {
+	0% {
 		opacity: 1;
-		transform: scale(1);
 	}
-	15% {
-		opacity: 0.35;
-		transform: scale(0.85);
-	}
-	30% {
-		opacity: 1;
-		transform: scale(1.1);
-	}
-	45% {
-		opacity: 0.45;
-		transform: scale(0.9);
-	}
-	60% {
-		opacity: 1;
-		transform: scale(1);
+	50% {
+		opacity: 0;
 	}
 }
 
@@ -174,64 +160,60 @@ body.custom-cursor-active * {
 	position: relative;
 	display: inline-flex;
 	align-items: center;
-	gap: 8px;
+	gap: 7px;
 	padding: 0;
 	background: none;
 	border: none;
 	font-family: 'Inter', sans-serif;
-	font-weight: 500;
+	font-weight: 600;
 	font-size: 13px;
-	color: var(--meta);
+	color: var(--fg);
 	cursor: pointer;
-	transition: color 0.2s ease;
 }
 
-.availability-btn:hover {
-	color: var(--fg);
+.availability-text {
+	opacity: 0.5;
+	transition: opacity 0.3s ease;
+}
+
+.availability-btn:hover .availability-text {
+	opacity: 1;
 }
 
 .availability-dot {
-	width: 7px;
-	height: 7px;
-	background-color: #FF4400;
-	border-radius: 1px;
+	width: 8px;
+	height: 8px;
+	background-color: #FF4401;
 	flex-shrink: 0;
-	animation: availabilityHeartbeat 2.2s ease-in-out infinite;
-	will-change: transform, opacity;
+	animation: availabilityBlink 0.75s infinite step-start;
 }
 
 .availability-btn:hover .availability-dot {
-	animation-duration: 0.55s;
+	animation-duration: 0.25s;
 }
 
 .availability-tooltip {
 	position: absolute;
-	top: calc(100% + 10px);
-	left: 0;
-	padding: 5px 10px;
+	top: 26px;
+	right: 0;
+	padding: 6px 12px;
 	border-radius: 6px;
-	background-color: #1f1f1f;
-	color: #d4d4d2;
+	background-color: rgba(133, 133, 133, 0.14);
+	backdrop-filter: blur(8px);
+	color: var(--fg);
 	font-family: 'Inter', sans-serif;
-	font-weight: 500;
+	font-weight: 600;
 	font-size: 12px;
 	white-space: nowrap;
 	pointer-events: none;
 	opacity: 0;
-	transform: translateY(-4px);
-	transition: opacity 0.2s ease, transform 0.2s ease;
-	box-shadow: 0 4px 14px rgba(0, 0, 0, 0.14);
-}
-
-html:not(.dark-theme) .availability-tooltip {
-	background-color: #141414;
-	color: #f4f4f2;
+	transition: opacity 0.3s ease;
+	z-index: 20;
 }
 
 .availability-btn:hover .availability-tooltip,
 .availability-btn.copied .availability-tooltip {
 	opacity: 1;
-	transform: translateY(0);
 }
 
 .hero-greeting {

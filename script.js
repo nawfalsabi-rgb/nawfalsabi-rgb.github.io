@@ -77,10 +77,37 @@ document.querySelectorAll(".notes-link").forEach((a) => {
 	a.href = isLocalFile ? "notes.html" : "/notes";
 });
 
-// ───────────────── Badge Available + Copie Email ─────────────────
+// ───────────────── Badge Available + Copie Email (suivi souris fluide) ─────────────────
 document.querySelectorAll(".availability-btn").forEach((btn) => {
 	const tooltip = btn.querySelector(".availability-tooltip");
 	let resetTimer = null;
+	let targetX = 0;
+	let targetY = 0;
+	let curX = 0;
+	let curY = 0;
+	let rafId = null;
+
+	function animateTooltip() {
+		curX += (targetX - curX) * 0.16;
+		curY += (targetY - curY) * 0.16;
+		if (tooltip) {
+			tooltip.style.transform = `translate3d(${curX}px, ${curY}px, 0)`;
+		}
+		if (Math.abs(targetX - curX) > 0.1 || Math.abs(targetY - curY) > 0.1) {
+			rafId = requestAnimationFrame(animateTooltip);
+		} else {
+			rafId = null;
+		}
+	}
+
+	btn.addEventListener("pointermove", (e) => {
+		const rect = btn.getBoundingClientRect();
+		targetX = e.clientX - rect.right;
+		targetY = e.clientY - rect.top;
+		if (rafId === null) {
+			rafId = requestAnimationFrame(animateTooltip);
+		}
+	});
 
 	btn.addEventListener("click", () => {
 		navigator.clipboard?.writeText("contact@nawfalsabi.me");
