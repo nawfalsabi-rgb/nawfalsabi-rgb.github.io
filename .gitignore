@@ -2,6 +2,7 @@
 *.zip
 *.bat
 Portfolio/
+assets/projects/Papillon_Fragrance/
 .claude/
 .mcp.json
 

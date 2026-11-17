@@ -50,6 +50,30 @@ const PROJECTS = [
 		],
 	},
 	{
+		id: 22,
+		slug: "papillon",
+		title: "Papillon Fragrance",
+		subtitle: "Identité de marque, packaging & modélisation 3D",
+		focus: "Branding · Packaging · 3D",
+		year: "2026",
+		client: "Papillon Fragrance",
+		role: "Direction Artistique, Packaging & Modélisation 3D",
+		description: [
+			"Papillon Fragrance est une maison de parfumerie pour laquelle j'ai conçu l'univers de marque complet : monogramme papillon, système d'étiquettes découpées en arche et modélisation 3D photoréaliste de l'ensemble du flaconnage.",
+			"Le projet s'articule autour de deux gammes distinctes — une collection d'Eaux de Parfum aux lignes architecturales épurées, et une série pop de Sprays d'Ambiance aux flacons sculptés mis en scène dans des décors 3D texturés.",
+		],
+		quote: "L'élégance du parfum, traduite en volume et en lumière.",
+		cover: { src: "assets/projects/papillon/00-cover.jpg", imgWidth: 1031, imgHeight: 1289 },
+		images: [
+			{ src: "assets/projects/papillon/01-identity.jpg", imgWidth: 2668, imgHeight: 1500 },
+			{ src: "assets/projects/papillon/02-labels.jpg", imgWidth: 2668, imgHeight: 1500 },
+			{ src: "assets/projects/papillon/03-edp-collection.jpg", imgWidth: 2668, imgHeight: 1500 },
+			{ src: "assets/projects/papillon/04-edp-composition.jpg", imgWidth: 2668, imgHeight: 1500 },
+			{ src: "assets/projects/papillon/05-sprays-botanical.jpg", imgWidth: 2668, imgHeight: 1500 },
+			{ src: "assets/projects/papillon/06-sprays-fruity.jpg", imgWidth: 2668, imgHeight: 1500 },
+		],
+	},
+	{
 		id: 7,
 		slug: "anzar",
 		title: "Anzar",
@@ -191,6 +215,7 @@ const PROJECTS = [
 const ARCHIVE_PROJECTS = [
 	{ id: "NS_128", slug: "dealer2cbd", title: "Dealer2CBD — Design Système", focus: "UI · UX · Strategy", year: "2026", focusKey: "UI", poster: "assets/projects/dealer2cbd/00-cover.jpg" },
 	{ id: "NS_341", slug: "sora", title: "Sora — Webdesign & UI/UX", focus: "Webdesign · UI/UX · Front-end", year: "2026", focusKey: "UI", poster: "assets/projects/sora/00-cover.jpg" },
+	{ id: "NS_362", slug: "papillon", title: "Papillon Fragrance — Branding & 3D", focus: "Branding · Packaging · 3D", year: "2026", focusKey: "3D", poster: "assets/projects/papillon/00-cover.jpg" },
 	{ id: "NS_318", slug: "anzar", title: "Anzar — Identité de Marque", focus: "Brand · Identity", year: "2026", focusKey: "Identity", poster: "assets/projects/anzar/poster.jpg" },
 	{ id: "NS_204", slug: "backstages", title: "Les Backstages — Art Numérique", focus: "Art Numérique · 3D", year: "2024", focusKey: "3D", poster: "assets/projects/backstages/cover.jpg" },
 	{ id: "NS_325", slug: "kiran", title: "Kiran — Identité de Marque", focus: "Brand · Identity", year: "2026", focusKey: "Identity", poster: "assets/projects/kiran/poster.jpg" },
