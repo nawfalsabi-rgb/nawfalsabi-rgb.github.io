@@ -22,7 +22,7 @@ if (!isLocalFile && (window.location.pathname !== `/${project.slug}` || window.l
 const prevProject = PROJECTS[(currentIndex - 1 + PROJECTS.length) % PROJECTS.length];
 const nextProject = PROJECTS[(currentIndex + 1) % PROJECTS.length];
 
-document.title = `${project.title} | Nawfal Sabi`;
+document.title = `${project.title} · Nawfal Sabi`;
 
 let canonical = document.querySelector('link[rel="canonical"]');
 if (!canonical) {
