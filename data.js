@@ -111,7 +111,7 @@ const PROJECTS = [
 		],
 		quote: "Les Backstages.",
 		images: [
-			{ src: "assets/projects/backstages/cover.jpg", imgWidth: 1683, imgHeight: 1920, overlay: true },
+			{ src: "assets/projects/backstages/cover.jpg", imgWidth: 1683, imgHeight: 1920 },
 			{ src: "assets/projects/backstages/01.jpg", imgWidth: 1800, imgHeight: 1123 },
 			{ src: "assets/projects/backstages/02.jpg", imgWidth: 1800, imgHeight: 1123 },
 			{ src: "assets/projects/backstages/03.jpg", imgWidth: 1800, imgHeight: 1123 },
