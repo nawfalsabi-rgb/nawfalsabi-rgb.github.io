@@ -134,7 +134,7 @@ body.custom-cursor-active * {
 .hero-right-col {
 	display: flex;
 	flex-direction: column;
-	align-items: flex-start;
+	align-items: flex-end;
 	gap: 10px;
 	flex-shrink: 0;
 }
