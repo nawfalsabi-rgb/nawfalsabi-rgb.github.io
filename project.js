@@ -52,6 +52,7 @@ const metaRows = [
 	["Client", project.client],
 	["Collaborateurs", project.collaborators],
 	["Rôle", project.role],
+	["Thème", project.theme],
 	["Année", project.year],
 ].filter(([, value]) => value && value !== "—");
 metaRows.forEach(([label, value]) => {
@@ -68,17 +69,44 @@ if (project.liveUrl) {
 }
 
 const mediaGrid = document.getElementById("project-media-grid");
+let lightboxOverlay = null;
+let lightboxImg = null;
+
+if (project.lightbox) {
+	lightboxOverlay = document.createElement("div");
+	lightboxOverlay.className = "lightbox-overlay";
+	lightboxOverlay.innerHTML = `<button type="button" class="lightbox-close">Close [Esc]</button><img class="lightbox-img" alt="" />`;
+	document.body.appendChild(lightboxOverlay);
+	lightboxImg = lightboxOverlay.querySelector(".lightbox-img");
+
+	const closeLightbox = () => lightboxOverlay.classList.remove("is-open");
+	lightboxOverlay.addEventListener("click", (e) => {
+		if (e.target === lightboxOverlay || e.target.closest(".lightbox-close")) {
+			closeLightbox();
+		}
+	});
+}
+
 project.images.forEach((image, index) => {
 	const figure = document.createElement("div");
 	figure.className = "project-media";
+	if (image.fullWidth) {
+		figure.classList.add("project-media-full");
+	}
 
 	const media = document.createElement(image.type === "video" ? "video" : "img");
 	if (image.type === "video") {
 		media.src = image.src;
-		media.controls = true;
 		media.loop = true;
 		media.muted = true;
 		media.playsInline = true;
+		if (image.autoplay) {
+			media.autoplay = true;
+			media.controls = false;
+			media.play().catch(() => {});
+		} else {
+			media.controls = true;
+		}
 		if (image.poster) media.poster = image.poster;
 	} else {
 		media.src = image.src;
@@ -86,6 +114,15 @@ project.images.forEach((image, index) => {
 		media.loading = index === 0 ? "eager" : "lazy";
 		media.decoding = "async";
 		if (index === 0) media.fetchPriority = "high";
+
+		if (project.lightbox) {
+			figure.classList.add("project-media-zoomable");
+			figure.addEventListener("click", () => {
+				lightboxImg.src = image.src;
+				lightboxImg.alt = project.title;
+				lightboxOverlay.classList.add("is-open");
+			});
+		}
 	}
 	media.width = image.imgWidth;
 	media.height = image.imgHeight;
@@ -114,10 +151,16 @@ mediaGrid.appendChild(quoteBox);
 // ───────────────── Navigation clavier ─────────────────
 document.addEventListener("keydown", (event) => {
 	if (event.key === "Escape") {
+		if (lightboxOverlay && lightboxOverlay.classList.contains("is-open")) {
+			lightboxOverlay.classList.remove("is-open");
+			return;
+		}
 		window.location.href = homeHref;
 	} else if (event.key === "ArrowLeft") {
+		if (lightboxOverlay && lightboxOverlay.classList.contains("is-open")) return;
 		window.location.href = getProjectHref(prevProject.slug);
 	} else if (event.key === "ArrowRight") {
+		if (lightboxOverlay && lightboxOverlay.classList.contains("is-open")) return;
 		window.location.href = getProjectHref(nextProject.slug);
 	}
 });
